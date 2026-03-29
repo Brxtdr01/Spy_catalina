@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Background Screen</title>
+<title>Spy Catalina</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Manifest PWA -->
+<link rel="manifest" href="manifest.json">
+
 <style>
 html, body {
   margin: 0;
@@ -13,5 +18,16 @@ body {
 }
 </style>
 </head>
-<body></body>
+<body>
+
+<script>
+// Enregistrer le Service Worker
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js")
+    .then(() => console.log("Service Worker enregistré"))
+    .catch(err => console.log("Erreur SW:", err));
+}
+</script>
+
+</body>
 </html>
