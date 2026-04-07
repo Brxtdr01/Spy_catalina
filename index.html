@@ -5,27 +5,53 @@
 <title>Spy Catalina</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Manifest PWA -->
 <link rel="manifest" href="manifest.json">
 
 <style>
 html, body {
   margin: 0;
   height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
 body {
   background: url("screen.png") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Conteneur style login mac */
+.login-box {
+  backdrop-filter: blur(20px);
+  background: rgba(0,0,0,0.4);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+/* Champ texte */
+input {
+  width: 220px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 16px;
 }
 </style>
 </head>
+
 <body>
 
+<div class="login-box">
+  <input type="text" placeholder="Mot de passe">
+</div>
+
 <script>
-// Enregistrer le Service Worker
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js")
-    .then(() => console.log("Service Worker enregistré"))
-    .catch(err => console.log("Erreur SW:", err));
+  navigator.serviceWorker.register("sw.js");
 }
 </script>
 
