@@ -16,29 +16,51 @@ html, body {
 
 body {
   background: url("screen.png") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100vh;
+  position: relative;
 }
 
-/* Conteneur style login mac */
+/* Boîte login */
 .login-box {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
   backdrop-filter: blur(20px);
-  background: rgba(0,0,0,0.4);
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
+  background: rgba(0,0,0,0.35);
+  padding: 18px 22px;
+  border-radius: 14px;
 }
 
 /* Champ texte */
 input {
-  width: 220px;
-  padding: 12px;
-  border-radius: 10px;
+  width: 200px;
+  padding: 10px;
+  border-radius: 8px;
   border: none;
   outline: none;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
+
+  background: rgba(255,255,255,0.2);
+  color: white;
+  caret-color: white;
+
+  /* Animation curseur */
+  animation: blink 1s step-end infinite;
+}
+
+/* Placeholder */
+input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+/* Animation clignotement */
+@keyframes blink {
+  50% {
+    caret-color: transparent;
+  }
 }
 </style>
 </head>
@@ -46,7 +68,7 @@ input {
 <body>
 
 <div class="login-box">
-  <input type="text" placeholder="Mot de passe">
+  <input type="text" placeholder="Mot de passe" autofocus>
 </div>
 
 <script>
