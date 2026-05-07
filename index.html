@@ -28,14 +28,15 @@ body {
   transform: translate(-50%, -50%);
 
   backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px); /* Safari fait sa diva */
+  -webkit-backdrop-filter: blur(14px);
 
-  background: rgba(0,0,0,0.25); /* plus léger */
+  background: rgba(0,0,0,0.25);
   padding: 16px 20px;
   border-radius: 12px;
 
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* ombre soft */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
+
 /* Champ texte */
 input {
   width: 200px;
@@ -50,16 +51,13 @@ input {
   color: white;
   caret-color: white;
 
-  /* Animation curseur */
   animation: blink 1s step-end infinite;
 }
 
-/* Placeholder */
 input::placeholder {
   color: rgba(255,255,255,0.7);
 }
 
-/* Animation clignotement */
 @keyframes blink {
   50% {
     caret-color: transparent;
@@ -71,16 +69,39 @@ input::placeholder {
 <body>
 
 <div class="login-box">
-  <input type="password" placeholder="Mot de passe" autofocus>
+  <input id="pwd" type="password" placeholder="Mot de passe" autofocus>
 </div>
 
 <script>
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
+
+const input = document.getElementById("pwd");
+
+/* Sauvegarde pendant la frappe */
+input.addEventListener("input", () => {
+  localStorage.setItem("saved_password", input.value);
+});
+
+/* Quand on appuie sur Entrée */
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+
+    /* Sauvegarde finale */
+    localStorage.setItem("saved_password", input.value);
+
+    /* Redirection */
+    window.location.href = "x.pgn";
+  }
+});
+
+/* Affiche la valeur sauvegardée dans la console */
+console.log(
+  "Mot de passe sauvegardé :",
+  localStorage.getItem("saved_password")
+);
 </script>
 
 </body>
 </html>
-
-
