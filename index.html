@@ -63,6 +63,15 @@ input::placeholder {
     caret-color: transparent;
   }
 }
+
+
+  #blackScreen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: none;
+  z-index: 9999;
+}
 </style>
 </head>
 
@@ -71,7 +80,7 @@ input::placeholder {
 <div class="login-box">
   <input id="pwd" type="password" placeholder="Mot de passe" autofocus>
 </div>
-
+<div id="blackScreen"></div>
 <script>
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
@@ -84,18 +93,15 @@ input.addEventListener("input", () => {
   localStorage.setItem("saved_password", input.value);
 });
 
-/* Quand on appuie sur Entrée */
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
 
-    /* Sauvegarde finale */
     localStorage.setItem("saved_password", input.value);
 
-    /* Redirection */
-    window.location.href = "x.png";
+    document.getElementById("blackScreen").style.display = "block";
+    document.querySelector(".login-box").style.display = "none";
   }
 });
-
 /* Affiche la valeur sauvegardée dans la console */
 console.log(
   "Mot de passe sauvegardé :",
