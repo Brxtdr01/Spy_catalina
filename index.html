@@ -20,22 +20,22 @@ body {
   position: relative;
 }
 
+/* Boîte login */
 .login-box {
   position: absolute;
-
-  top: 60%;          /* ajuste fin ici */
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
   backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px); /* Safari fait sa diva */
 
-  background: rgba(0,0,0,0.25);
+  background: rgba(0,0,0,0.25); /* plus léger */
   padding: 16px 20px;
   border-radius: 12px;
 
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* ombre soft */
 }
-
 /* Champ texte */
 input {
   width: 200px;
@@ -50,14 +50,16 @@ input {
   color: white;
   caret-color: white;
 
+  /* Animation curseur */
   animation: blink 1s step-end infinite;
 }
 
+/* Placeholder */
 input::placeholder {
   color: rgba(255,255,255,0.7);
 }
 
-/* Animation curseur */
+/* Animation clignotement */
 @keyframes blink {
   50% {
     caret-color: transparent;
@@ -69,28 +71,16 @@ input::placeholder {
 <body>
 
 <div class="login-box">
-  <input id="pwd" type="password" placeholder="Mot de passe" autofocus>
+  <input type="text" placeholder="Mot de passe" autofocus>
 </div>
 
 <script>
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
-
-/* Gestion stockage local */
-const input = document.getElementById("pwd");
-
-/* Charger */
-const saved = localStorage.getItem("saved_password");
-if (saved) {
-  input.value = saved;
-}
-
-/* Sauvegarder */
-input.addEventListener("input", () => {
-  localStorage.setItem("saved_password", input.value);
-});
 </script>
 
 </body>
 </html>
+
+
